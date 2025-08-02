@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %} {% block title %}Hindu Wedding Cards{% endblock
+%} {% block styles %}
+<link
+  href="{{ url_for('static', filename='css/card.css') }}"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.x/css/all.min.css"
+  rel="stylesheet"
+/>
+{% endblock %} {% block content %}
+<div class="container py-4">
+  <div class="row g-4">
+    {% for card in cards %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <div
+        class="card product-card p-3 position-relative h-100 shadow-sm hinducard w-100"
+      >
+        <button
+          class="btn p-0 add-to-wishlist position-absolute top-0 end-0 m-2"
+          data-card-id="{{ card.id }}"
+        >
+          <i
+            class="fa fa-heart {{ 'text-danger' if card.id in (session.get('wishlist') or []) else 'text-secondary' }}"
+          ></i>
+        </button>
+        <a href="{{ url_for('product_detail', card_id=card.id) }}">
+          <img
+            src="{{ url_for('static', filename='images/' ~ card.src) }}"
+            alt="{{ card.title }}"
+            class="card-img-top img-fluid"
+          />
+        </a>
+        <div class="card-body text-center">
+          <h5 class="card-title fs-5">{{ card.title }}</h5>
+          <p class="price text-danger fw-bold fs-6">
+            Rs {{ '%.2f'|format(card.price) }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}" />
+{% endblock %}
+<footer class="text-dark py-5 footer mt-auto">
+  <div class="container">
+    <div class="row text-center text-md-start gy-4">
+      <div class="col-12 col-md-3 mb-4 mb-md-0 d-flex flex-column align-items-center">
+        <div class="image-overlay-container" style="width: 180px; height: 180px;">
+          <img src="{{ url_for('static', filename='images/logo.png') }}"
+               alt="Wed Knot Craft"
+               class="overlay-image">
+          <div class="overlay-text text-dark image-text">
+            <span>Wed</span><br>
+            <span>Knot</span><br>
+            <span>Craft</span>
+          </div>
+        </div>
+        <p class="small fw-semibold fs-5 fs-md-5 mt-3">
+          Largest Wedding<br>
+          Cards Collections in<br>
+          Chennai
+        </p>
+      </div>
+      <div class="col-6 col-md-3 mb-4 mb-md-0">
+        <h5 class="fw-bold mb-3 fs-3 fs-md-4">Information</h5>
+        <ul class="list-unstyled fw-semibold">
+          <li><a href="{{ url_for('about') }}" class="text-dark text-decoration-none fs-4 fs-md-5">About Us</a></li>
+          <li><a href="{{ url_for('contact') }}" class="text-dark text-decoration-none fs-4 fs-md-5">Contact Us</a></li>
+          <li><a href="{{ url_for('faq') }}" class="text-dark text-decoration-none fs-4 fs-md-5">FAQ</a></li>
+          <li><a href="{{ url_for('how_to_order') }}" class="text-dark text-decoration-none fs-4 fs-md-5">How to order wedding invitation online?</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3 mb-4 mb-md-0">
+        <h5 class="fw-bold mb-3 fs-3 fs-md-4">Quick Access</h5>
+        <ul class="list-unstyled fw-semibold">
+          <li><a href="{{ url_for('home') }}" class="text-dark text-decoration-none fs-4 fs-md-5">Home</a></li>
+          <li><a href="{{ url_for('wedding_cards') }}" class="text-dark text-decoration-none fs-4 fs-md-5">Wedding Cards</a></li>
+          <li><a href="{{ url_for('hindu_wedding_cards') }}" class="text-dark text-decoration-none fs-4 fs-md-5">Hindu Wedding Cards</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-3 mb-4 mb-md-0">
+        <h5 class="fw-bold mb-3 fs-3 fs-md-4">Contact Us</h5>
+        <p class="fw-semibold fs-5 fs-md-5 mb-2">
+          <i class="bi bi-telephone me-2"></i>+91 9876543210
+        </p>
+        <p class="fw-semibold fs-md-5 mb-2 mail fs-5">
+          <i class="bi bi-envelope me-2"></i>wed@wedcards.com
+        </p>
+        <p class="fw-semibold fs-5 fs-md-5 mb-1">Operating hours: 10 AM-10 PM</p>
+        <p class="fw-semibold fs-5 fs-md-5">Monday-Sunday</p>
+      </div>
+    </div>
+    <div class="mt-4 d-flex flex-wrap justify-content-center justify-content-md-start align-items-center gap-3">
+      <span class="fw-semibold fs-4 fs-md-5">Follow us on:</span>
+      <a href="#"><img src="{{ url_for('static', filename='images/insta.png') }}" alt="Instagram" width="24"></a>
+      <a href="#"><img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook" width="24"></a>
+      <a href="#"><img src="{{ url_for('static', filename='images/youtube.png') }}" alt="YouTube" width="24"></a>
+      <a href="#"><img src="{{ url_for('static', filename='images/whatsapp.png') }}" alt="WhatsApp" width="24"></a>
+    </div>
+    <hr class="mt-4">
+    <p class="text-center small fw-semibold mb-0 fs-6 fs-md-5">
+      &copy; Wed Knot Craft India Private Limited. All Rights Reserved.
+    </p>
+  </div>
+</footer>

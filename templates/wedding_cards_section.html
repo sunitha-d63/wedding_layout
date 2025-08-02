@@ -1,0 +1,57 @@
+{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/Weddingcards.css') }}"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css"
+/>
+{% endblock %}
+<section class="py-5 px-3">
+  <div class="container text-center">
+    <h2 class="h2 fw-bold">Simple and Affordable Wedding Cards</h2>
+  </div>
+  <div class="container-fluid mt-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      {% for card in cards %}
+      <div class="col">
+        <div
+          class="card h-100 p-4 shadow-sm position-relative hover-shadow d-flex flex-column border-0"
+        >
+          <img
+            src="{{ url_for('static', filename='images/' ~ card.src) }}"
+            alt="{{ card.title }}"
+            class="mx-auto mb-4 card-img cursor-pointer"
+          />
+          <h3 class="fs-4 fw-semibold text-center">{{ card.title }}</h3>
+
+          <div
+            class="mt-auto d-flex justify-content-between align-items-center fs-4 fw-medium mt-3"
+          >
+            <span>Rs {{ '%.2f'|format(card.price) }}</span>
+            <div class="d-flex gap-3">
+              <a href="#" class="add-to-wishlist" data-card-id="{{ card.id }}">
+                <i class="bi bi-heart text-secondary"></i>
+              </a>
+              <form
+                action="{{ url_for('add_to_cart') }}"
+                method="post"
+                class="d-inline"
+              >
+                <input type="hidden" name="card_id" value="{{ card.id }}" />
+                <button type="submit" class="btn btn-link p-0">
+                  <i class="bi bi-bag-plus text-muted"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+{% endblock %}

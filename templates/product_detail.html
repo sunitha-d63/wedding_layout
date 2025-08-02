@@ -1,0 +1,178 @@
+{% extends 'layout/base.html' %}
+{% block title %}{{ card.title }}{% endblock %}
+{% block styles %}
+<link href="{{ url_for('static', filename='css/card.css') }}" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.x/css/all.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container py-5 mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ url_for('static', filename='images/' ~ card.src) }}" alt="{{ card.title }}"
+        class="img-fluid rounded shadow" width="550" height="350">
+    </div>
+
+    <div class="col-md-6 p-3">
+      <div class="bg-warning px-4 py-3 rounded-pill d-inline-block mb-3 fs-4">
+        <strong>SKU Code:</strong> {{ card.sku }}
+      </div>
+      <h4 class="text-danger fw-bold">
+        Rs. {{ '%.2f'|format(card.price) }}
+        <small class="text-dark">per unit inclusive of all taxes</small>
+      </h4>
+      <div class="my-4">
+        <label class="fw-bold me-2">QTY:</label>
+        <div class="input-group quantity-picker" style="width: max-content;">
+          <button type="button" class="btn btn-warning btn-decrement">−</button>
+          <input type="number" name="quantity" min="1" value="1" class="form-control text-center quantity-input"
+            style="width: 60px;" />
+          <button type="button" class="btn btn-warning btn-increment">+</button>
+        </div>
+      </div>
+      <div class="d-flex gap-2 mb-3">
+        <button type="button" class="btn btn-warning fw-bold fs-4 buy-now-btn" data-card-id="{{ card.id }}">
+          Buy Now
+        </button>
+        <form action="{{ url_for('add_to_cart') }}" method="post" class="d-inline">
+          <input type="hidden" name="card_id" value="{{ card.id }}">
+          <button type="submit" class="btn btn-outline-dark fs-4 cart-btn">
+            Add to Cart
+          </button>
+        </form>
+      </div>
+
+
+      <!-- Variants -->
+      {% if card.variants %}
+      <div class="mt-4">
+        <strong class="fs-5">Variants (Same size & material but different color/Theme)</strong><br>
+        {% for variant in card.variants %}
+        <img src="{{ url_for('static', filename='images/' ~ variant.src) }}" width="100" height="100"
+          class="border rounded me-2 mt-2">
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Description & Additional Info -->
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <h5 class="fw-bold border-bottom border-dark pb-2">DESCRIPTION:</h5>
+      <p class="fs-5 mt-3">{{ card.description }}</p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h5 class="fw-bold border-bottom border-dark pb-2">ADDITIONAL INFO:</h5>
+      <div class="row mt-3 g-3">
+        <div class="col-4">
+          <div class="bg-light p-3 rounded">
+            <i class="fa fa-arrow-up text-danger me-2"></i>
+            <strong>Height:</strong> {{ card.height }} cms
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="bg-light p-3 rounded">
+            <i class="fa fa-arrows-h text-danger me-2"></i>
+            <strong>Width:</strong> {{ card.width }} cms
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="bg-light p-3 rounded">
+            <i class="fa fa-balance-scale text-danger me-2"></i>
+            <strong>Weight:</strong> {{ card.weight }} g
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Additional Comments + Wedding Modal Button -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <h5 class="fw-bold border-bottom border-dark pb-2">ADDITIONAL COMMENTS</h5>
+      <p class="fs-5 mt-3">Discounts are applied based on quantity at checkout.</p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <button type="button" class="btn btn-warning fw-bold fs-4 mt-4" data-bs-toggle="modal"
+        data-bs-target="#weddingDetailsModal">
+        The Wedding Details
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Wedding Details Modal -->
+<div class="modal fade" id="weddingDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded">
+      <div class="modal-body text-center position-relative p-4" style="background-color: #ffe5b4;">
+        <!-- Ring Image & Names Overlay -->
+        <div class="mx-auto mb-4 position-relative" style="width: 160px; height: 160px;">
+          <img src="{{ url_for('static', filename='images/' ~ wedding_info.ring_img) }}" alt="Ring"
+            class="w-100 h-100 object-contain rounded-circle" />
+          <div class="position-absolute top-50 start-50 translate-middle text-center"
+            style="font-family: serif; font-size: 1rem; z-index: 1;">
+            <div>{{ wedding_info.groom }}</div>
+            <div>&amp;</div>
+            <div>{{ wedding_info.bride }}</div>
+          </div>
+        </div>
+
+        <h5 class="fw-semibold mb-4">
+          Together with their families,<br />
+          joyfully invite you to their wedding
+        </h5>
+
+        <div class="bg-white bg-opacity-25 rounded p-3 mb-4">
+          <p><i class="fa fa-calendar"></i> {{ wedding_info.date }}</p>
+          <p><i class="fa fa-clock"></i> {{ wedding_info.time }}</p>
+          <p><i class="fa fa-map-marker-alt"></i> {{ wedding_info.location }}</p>
+        </div>
+
+        <div class="mb-3">
+          <button class="btn btn-warning me-2">View map</button>
+          <button class="btn btn-warning">Add to calendar</button>
+        </div>
+      </div>
+
+      <div class="modal-footer flex-column border-0">
+        <small>Reception to follow • Dress Code: <em>Any Dress Code</em></small>
+        <button class="btn btn-warning mt-2">RSVP Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Related Cards -->
+<div class="container mb-5 related-cards">
+  <section class="mt-5">
+    <h4 class="fw-bold mb-3">Related Wedding Cards</h4>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-4">
+      {% for rcard in related_cards %}
+      <div class="col">
+        <div class="card p-2 h-100 shadow-sm">
+          <a href="{{ url_for('product_detail', card_id=rcard.id) }}">
+            <img src="{{ url_for('static', filename='images/' ~ rcard.src) }}" alt="{{ rcard.title }}"
+              class="card-img-top img-fluid rounded" />
+          </a>
+          <div class="card-body text-center">
+            <h6 class="card-title">{{ rcard.title }}</h6>
+            <p class="text-danger fw-bold">Rs {{ '%.2f'|format(rcard.price) }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/increment.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+
+{% endblock %}
+{% endblock %}

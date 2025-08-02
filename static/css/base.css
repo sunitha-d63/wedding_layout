@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #E6E6FA;
+}
+.content-wrapper {
+  padding-top: 170px;
+}
+@media (max-width: 992px) {
+  .content-wrapper {
+    padding-top: 210px;
+  }
+}
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding-top: 240px;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+footer {
+  background-color: #FFE5B4;
+  padding: 1rem;
+  text-align: center;
+}
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}

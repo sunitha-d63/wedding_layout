@@ -1,0 +1,65 @@
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+{% endblock %}
+<section class="search-section">
+    <a href="{{ url_for('home') }}" class="btn btn-link text-decoration-none mb-3 d-flex align-items-center">
+  <i class="bi bi-arrow-return-left fs-4 me-2" aria-hidden="true"></i>
+  Back to Home
+</a>
+
+  <h2 class="section-title">Everything You Need to Plan Your Dream Wedding</h2>
+  <p class="section-subtitle">Search for vendors, cards, ideas, real wedding stories, and more!</p>
+
+  <form method="POST" class="search-container">
+    <input type="text" name="search_query" value="{{ search_query }}" class="form-control" placeholder="Search...">
+    <i class="fas fa-search search-icon" onclick="this.closest('form').submit()"></i>
+  </form>
+
+<div class="filters">
+  {% for filter in filters %}
+    <form method="POST" style="display:inline;">
+      <input type="hidden" name="remove_filter" value="{{ filter }}" class="fs-3">
+      <button type="submit" class="filter-button fs-4 px-3 py-3 fw-bold">
+        {{ filter }}
+        <i class="fas fa-times fa-lg close-icon"></i>
+      </button>
+    </form>
+  {% endfor %}
+</div>
+<div class="container-fluid">
+  <div class="image-grid">
+    <h3 class="image-section-title">Ideas for You</h3>
+    <div class="row">
+      {% for img in ideas %}
+        <div class="col-md-4 img-card">
+          <a href="{{ url_for('hindu_wedding_cards') }}">
+            <img src="{{ url_for('static', filename=img) }}"
+                 alt="Idea {{ loop.index }}">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="image-grid">
+    <h3 class="image-section-title">Popular on This</h3>
+    <div class="row">
+      {% for img in popular %}
+        <div class="col-md-4 img-card">
+          <a href="{{ url_for('hindu_wedding_cards') }}">
+            <img src="{{ url_for('static', filename=img) }}"
+                 alt="Popular {{ loop.index }}">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+</section>

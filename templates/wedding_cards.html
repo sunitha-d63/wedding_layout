@@ -1,0 +1,34 @@
+{% extends "layout/base.html" %}
+{% block title %}Wedding Cards{% endblock %}
+{% block content %}
+  {% set cards = [
+    {'title': 'Hindu Wedding Cards', 'image': 'hinduwed.png'},
+    {'title': 'Christian Wedding Cards', 'image': 'Christian_Wedding.png'},
+    {'title': 'Muslim Wedding Cards', 'image': 'Muslim_Wedding.png'},
+    {'title': 'Sikh Wedding Cards', 'image': 'Sikh_Wedding.png'},
+    {'title': 'Interfaith Wedding Cards', 'image': 'interfaith_wed.png'},
+    {'title': 'Exclusive Wedding Cards', 'image': 'exclusive_wed.png'},
+    {'title': 'Traditional Wedding Cards', 'image': 'Traditional_wed.png'},
+    {'title': 'All Wedding Cards', 'image': 'All_wedding_cards.png'},
+    {'title': 'New Style Wedding Cards', 'image': 'new_style_wed.png'},
+    {'title': 'Envelope Wedding Cards', 'image': 'envelope_wed.png'},
+    {'title': 'Elegant Faith Wedding Cards', 'image': 'elegant_faith_wed.png'},
+    {'title': 'Nepali Wedding Cards', 'image': 'Nepali_Wedding.png'}
+  ] %}
+ <div class="container mt-5 mb-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 justify-content-center">
+      {% for card in cards %}
+        <div class="col text-center d-flex justify-content-center">
+          <div class="card p-5 shadow-sm border-0" style="background-color: #FFF8EB; width: 100%; max-width: 300px;">
+            <img
+              src="{{ url_for('static', filename='images/' ~ card.image) }}"
+              alt="{{ card.title }}"
+              class="img-fluid mb-3"
+            />
+            <h5 class="fw-bold fs-5">{{ card.title }}</h5>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

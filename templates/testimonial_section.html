@@ -1,0 +1,40 @@
+<section class="py-5 px-3">
+  <div class="text-center mb-5">
+    <h2 class="h2 fw-bold">WHAT CLIENTS SAY ABOUT US</h2>
+  </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5 justify-content-center">
+       {% set testimonials = [ { 'name': 'James', 'title': 'Absolutely beautiful
+      invites!', 'text': 'We were blown away by the quality and elegance of our
+      wedding invitations. The paper felt luxurious, and the printing was
+      flawless. Everyone keeps asking where we got them from!', 'image':
+      'user1.jpg' }, 
+      { 'name': 'Harshitha', 'title': 'Customized to perfection',
+      'text': 'We wanted something simple but unique, and they absolutely nailed
+      it. Colors, fonts, wording — everything was exactly how we imagined. Fast
+      turnaround too!', 'image': 'user2.jpg' }, 
+      { 'name': 'Santhosh', 'title':
+      'Great quality at a great price.', 'text': 'We were on a tight budget, but
+      didn\'t want to compromise on style. These invites were not only
+      affordable but looked premium. Arrived quickly and packaged beautifully',
+      'image': 'user3.jpg' } ] %} {% for item in testimonials %}
+      <div class="col d-flex">
+        <div class="bg-white rounded shadow p-4 text-center flex-fill d-flex flex-column">
+          <img src="{{ url_for('static', filename='images/' ~ item.image) }}"
+               alt="{{ item.name }}"
+               class="rounded-circle mx-auto mb-3"
+               style="width:80px; height:80px; object-fit:cover">
+          <h3 class="fw-bold fs-5">{{ item.name }}</h3>
+          <h4 class="fs-6 fw-semibold text-muted mt-1">{{ item.title }}</h4>
+          <p class="my-3 fs-5 flex-grow-1">{{ item.text }}</p>
+          <div class="d-flex justify-content-center text-warning fs-5 gap-1 mt-3">
+            {% for _ in range(5) %}
+              <i class="bi bi-star-fill"></i>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

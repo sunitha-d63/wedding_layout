@@ -1,0 +1,26 @@
+<section class="py-5 px-3">
+  <div class="text-center mb-4">
+    <h2 class="h2 fw-bold text-dark">How It Works</h2>
+  </div>
+  <div class="container">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-3 text-center">
+      {% set steps = [
+        {'icon': 'sample.jpg', 'text': 'Order Sample'},
+        {'icon': 'order.jpg', 'text': 'Get Sample Order In 5 days'},
+        {'icon': 'approve.jpg', 'text': 'Approve Digital Draft'},
+        {'icon': 'bulk.jpg', 'text': 'Place Your Bulk Order'},
+        {'icon': 'delivery.jpg', 'text': 'Print & Delivery'}
+      ] %}
+      {% for step in steps %}
+        <div class="col d-flex flex-column align-items-center">
+          <img src="{{ url_for('static', filename='images/' ~ step.icon) }}"
+               alt="{{ step.text }}"
+               class="mb-2"
+               style="width:84px; height:84px;"
+          />
+          <p class="fw-medium fs-6">{{ step.text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

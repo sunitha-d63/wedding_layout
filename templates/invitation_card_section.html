@@ -1,0 +1,31 @@
+
+<section class=" py-5 px-4 mt-5">
+  <div class="text-center mb-4">
+    <h2 class="h2 fw-bold text-dark">
+      Unique &amp; Exclusive Invitation Cards
+    </h2>
+    <p class="text-muted fs-6 mt-1 mb-5 fs-3">
+      Because each wedding is truly unique and memorable
+    </p>
+  </div>
+  <div class="row g-3 justify-content-center">
+    {% set cards = [
+      {'title': 'Hindu Wedding Cards', 'image': 'Editable_Indian_Wedding_Invitations___Hindu_Wedding_Invite___Flower_Frame_Wedding_Card___Printable___Instant_Download___Corjl_IWIM_-_Etsy_UK-removebg-preview.png'},
+      {'title': 'Luxury Cards', 'image': 'Invitation_Luxury_PSD__High_Quality_Free_PSD_Templates_for_Download___Freepik-removebg-preview.png'},
+      {'title': 'Floral Wedding Cards', 'image': 'Floral_Indian_wedding_invitation_card_design_in_frabic-removebg-preview.png'}
+    ] %}
+    {% for card in cards %}
+      <div class="col-12 col-sm-6 col-lg-4 d-flex flex-column align-items-center">
+        <div class="bg-white p-3 shadow rounded hover-scale d-flex align-items-center justify-content-center"
+             style="height:600px; width:100%; max-width:450px; transition: transform .3s;">
+          <img src="{{ url_for('static', filename='images/' ~ card.image) }}"
+               alt="{{ card.title }}"
+               class="img-fluid object-contain">
+        </div>
+        <h3 class="mt-3 text-center fs-5 fw-semibold">
+          {{ card.title }}
+        </h3>
+      </div>
+    {% endfor %}
+  </div>
+</section>

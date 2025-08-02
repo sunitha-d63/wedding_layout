@@ -1,0 +1,36 @@
+<section class="py-5 px-4">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+      {% set collections = [ {'title': 'Hindu Invitation Collections', 'image':
+      'Hindu_Invitation_collections.jpg', 'path':
+      url_for('hindu_wedding_cards')}, {'title': 'Christian Invitation
+      Collections', 'image': 'Christian_Invitation_collections.jpg', 'path':
+      None}, {'title': 'Muslim Invitation Collections', 'image':
+      'Muslim_Invitation_collections.jpg', 'path': None}, {'title': 'Interfaith
+      Invitation Collections', 'image': 'Interfaith_Invitation_collections.jpg',
+      'path': None} ] %} {% for col in collections %}
+      <div class="col">
+        <div
+          class="bg-white rounded shadow-sm overflow-hidden d-flex flex-column"
+        >
+          <img
+            src="{{ url_for('static', filename='images/' ~ col.image) }}"
+            alt="{{ col.title }}"
+            class="img-fluid"
+            style="height: 400px; object-fit: cover; width: 100%"
+          />
+          <div class="p-4 d-flex flex-column align-items-center mt-auto">
+            <h3 class="text-center fs-4 fw-semibold mb-3">{{ col.title }}</h3>
+            <a
+              href="{{ url_for('hindu_wedding_cards') }}"
+              class="btn btn-warning text-black fw-bold px-4 py-2"
+            >
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

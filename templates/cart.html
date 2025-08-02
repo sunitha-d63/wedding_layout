@@ -1,0 +1,61 @@
+{% extends 'layout/base.html' %}
+{% block title %}Your Cart{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <h2 class="mb-4">Your Cart</h2>
+  {% if cart %}
+  <div class="table-responsive fs-5">
+    <table class="table table-bordered table-striped align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>SKU</th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Qty</th>
+          <th>Unit Price</th>
+          <th>Tax</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for id, item in cart.items() %}
+          {% set line_ex = item.price * item.qty %}
+          {% set line_tax = line_ex * TAX_RATE %}
+          {% set line_tot = line_ex + line_tax %}
+          <tr>
+            <td>{{ item.sku }}</td>
+            <td><img src="{{ item.src }}" alt="{{ item.title }}" class="img-fluid" style="width: 60px;"></td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.qty }}</td>
+            <td>Rs{{ '%.2f'|format(item.price) }}</td>
+            <td>Rs{{ '%.2f'|format(line_tax) }}</td>
+            <td>Rs{{ '%.2f'|format(line_tot) }}</td>
+            <td>
+              <form action="{{ url_for('update_cart') }}" method="post" class="d-flex gap-1 justify-content-center flex-wrap">
+                <input type="hidden" name="card_id" value="{{ id }}">
+                <button class="btn btn-sm btn-outline-success" name="action" value="inc">+</button>
+                <button class="btn btn-sm btn-outline-warning" name="action" value="dec">−</button>
+                <button class="btn btn-sm btn-outline-danger" name="action" value="remove">×</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-end mt-4 fs-5">
+    <p><strong>Items Total:</strong> Rs{{ '%.2f'|format(total_ex) }}</p>
+    <p><strong>Total Tax:</strong> Rs{{ '%.2f'|format(total_tax) }}</p>
+    <p><strong>Grand Total:</strong> Rs{{ '%.2f'|format(grand_total) }}</p>
+  </div>
+  <div class="mt-3">
+    <a href="{{ url_for('home') }}" class="btn btn-warning">Continue Shopping</a>
+    <a href="{{ url_for('checkout') }}" class="btn btn-secondary">Proceed to Checkout</a>
+  </div>
+  {% else %}
+    <p class="text-muted">Your cart is empty.</p>
+    <a href="{{ url_for('home') }}" class="btn btn-outline-secondary">Continue Shopping</a>
+  {% endif %}
+</div>
+{% endblock %}

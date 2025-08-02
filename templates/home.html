@@ -1,0 +1,53 @@
+{% extends 'layout/base.html' %} {% block title %}Home - Wed Knot Craft{%
+endblock %} {% block content %}
+<div style="height: 10px" class="container homecontainer"></div>
+<div class="hero-section text-center">
+  <img
+    src="{{ url_for('static', filename='images/banner image.png') }}"
+    alt="Home Background"
+    class="hero-img"
+  />
+</div>
+{% include 'invitation_card_section.html' %} {% include
+'theme_based_invitation.html' %}
+<section class="bg-light py-4">
+  <div class="container text-center">
+    <img
+      src="{{ url_for('static', filename='images/card_frame.jpg') }}"
+      alt="Card Frame"
+      class="img-fluid"
+    />
+  </div>
+</section>
+<section class="py-4 bg-light">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-md-6">
+        <img
+          src="{{ url_for('static', filename='images/Promocard1.jpg') }}"
+          alt="Promo Left"
+          class="img-fluid rounded shadow"
+        />
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          src="{{ url_for('static', filename='images/Promocard2.jpg') }}"
+          alt="Promo Right"
+          class="img-fluid rounded shadow"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+{% include 'wedding_cards_section.html' %}
+<section class="py-5 bg-white">
+  <div class="container">
+    <img
+      src="{{ url_for('static', filename='images/stock-clearance.jpg') }}"
+      alt="Sale Banner"
+      class="img-fluid d-block w-100"
+    />
+  </div>
+</section>
+{% include 'invitation_collections.html' %} {% include
+'testimonial_section.html' %} {% include 'how_it_works.html' %} {% endblock %}

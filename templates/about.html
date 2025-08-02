@@ -1,0 +1,59 @@
+{% extends "layout/base.html" %}
+{% block title %}About Us - Wedding Cards{% endblock %}
+{% block styles %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<section class="py-5 px-3">
+  <div class="container about">
+    <h2 class="text-center display-5 fw-bold mb-5  mt-5">ABOUT US</h2>
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-4">Celebrating Love, One Invitation at a Time</h3>
+        <p class="fs-4">At Wed Knot Craft, we believe that every love story is unique and deserves to be celebrated in a way that reflects its individuality.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/wed1.png') }}"
+             alt="Section 1"
+             class="img-fluid rounded shadow">
+      </div>
+    </div>
+    <div class="row align-items-center mb-5 flex-md-row-reverse">
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-4">OUR STORY</h3>
+        <p class="fs-4">
+          What started as a passion for design has blossomed into a full-fledged business dedicated to bringing couples' visions to life.
+          Our founder envisioned a platform where couples could find invitations that resonate with their personal style and cultural heritage.
+        </p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/wed2.png') }}"
+             alt="Section 2"
+             class="img-fluid rounded shadow">
+      </div>
+    </div>
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-4">OUR PROMISE</h3>
+        <ul class="list-unstyled ms-3 fs-4">
+          <li class="mb-2">• Custom Designs: Tailored invitations that reflect your unique love story.</li>
+          <li class="mb-2">• Quality Craftsmanship: Crafted with high-quality materials and attention to detail.</li>
+          <li class="mb-2">• Customer Satisfaction: A seamless experience from selection to delivery.</li>
+        </ul>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='images/wed3.png') }}"
+             alt="Section 3"
+             class="img-fluid rounded shadow">
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <h3 class="fw-bold mb-4">JOIN Us in Celebrating Your Special Day</h3>
+      <p class="fs-4">
+        Explore our diverse range of designs and let us help you set the tone for your wedding celebration.
+        At Wed Knot Craft, your love story is our inspiration.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

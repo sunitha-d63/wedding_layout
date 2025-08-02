@@ -1,0 +1,45 @@
+{% extends "layout/base.html" %}
+{% block head_extra %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+  <div class="card auth-card">
+    <ul class="nav nav-tabs justify-content-center mb-3">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#login_tab">Login</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#register_tab">Sign Up</button></li>
+    </ul>
+    <div class="card-body">
+      <div class="tab-content">
+        <div id="login_tab" class="tab-pane fade show active">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for c, m in messages %}<div class="alert alert-{{ c }}">{{ m }}</div>{% endfor %}
+          {% endwith %}
+          <form method="post" action="{{ url_for('login') }}">
+            <input type="hidden" name="next" value="{{ next }}">
+            {{ login_form.hidden_tag() }}
+            <div class="mb-3">{{ login_form.email(class="form-control", placeholder="Email") }}</div>
+            <div class="mb-3">{{ login_form.password(class="form-control", placeholder="Password") }}</div>
+            <button class="btn btn-danger btn-rounded w-100">{{ login_form.submit.label.text }}</button>
+          </form>
+        </div>
+        <div id="register_tab" class="tab-pane fade">
+          <form method="post" action="{{ url_for('register') }}">
+            {{ reg_form.hidden_tag() }}
+            <div class="mb-3">{{ reg_form.name(class="form-control", placeholder="Name") }}</div>
+            <div class="mb-3">{{ reg_form.email(class="form-control", placeholder="Email") }}</div>
+            <div class="mb-3">{{ reg_form.password(class="form-control", placeholder="Password") }}</div>
+            <div class="mb-3">{{ reg_form.confirm_password(class="form-control", placeholder="Confirm Password") }}</div>
+            <button class="btn btn-danger btn-rounded w-100">{{ reg_form.submit.label.text }}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/auth-validation.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,77 @@
+.card.product-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.card.product-card img {
+  object-fit: cover;
+  height: 240px;
+  width: 100%;
+  display: block;
+}
+
+.hinducard { 
+  margin-top: 5% !important;
+}
+
+.card.product-card .wishlist-icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: rgba(75, 72, 72, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.product-card .wishlist-icon .fa-heart {
+  font-size: 1.2rem;
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.card.product-card.wishlisted .wishlist-icon .fa-heart {
+  color: #e63946;
+}
+
+.card.product-card .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0.75rem;
+  text-align: center;
+  min-height: 3em;
+}
+
+.card.product-card .price {
+  color: #dc3545;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.card.product-card a {
+  text-decoration: none;
+  color: inherit;
+}
+.related-cards .card-img-top {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 576px) {
+  .card.product-card img {
+    height: 200px;
+  }
+}
